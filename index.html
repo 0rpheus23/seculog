@@ -338,17 +338,50 @@
       font-size: 0.95rem;
     }
 
+    #contact .contact-card {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+    }
+
+    #contact .contact-photo {
+      flex: 0 0 108px;
+    }
+
+    #contact .contact-photo img {
+      width: 108px;
+      height: 108px;
+      object-fit: cover;
+      display: block;
+      border-radius: 50%;
+      border: 3px solid rgba(11, 31, 54, 0.08);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
     #contact .contact-details {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 0.55rem;
+      align-items: flex-start;
+      gap: 0.45rem;
       font-size: 0.98rem;
-      text-align: center;
+      text-align: left;
+    }
+
+    #contact .contact-details p {
+      margin: 0;
     }
 
     #contact .contact-details a {
       color: var(--primary-bg);
+      word-break: break-word;
     }
 
     footer {
@@ -416,6 +449,26 @@
       nav a {
         padding: 0.7rem 0.8rem;
         font-size: 0.95rem;
+      }
+
+      #contact .contact-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.25rem;
+      }
+
+      #contact .contact-details {
+        align-items: center;
+        text-align: center;
+      }
+
+      #contact .contact-photo {
+        flex-basis: auto;
+      }
+
+      #contact .contact-photo img {
+        width: 92px;
+        height: 92px;
       }
     }
   </style>
@@ -766,23 +819,28 @@
   <section id="contact">
     <div class="container">
       <h2>Kontakt</h2>
-      <div class="contact-details">
-        <p><strong>Dominik Wild – individuelle HR-Prozesslösungen</strong></p>
-        <p>Berlin</p>
-        <p>
-          E-Mail:
-          <a href="mailto:dominikwild@email.de">dominikwild@email.de</a>
-        </p>
-        <p>
-          Telefon:
-          <a href="tel:+4916090227726">+49-160-90227726</a>
-        </p>
-        <p>
-          LinkedIn:
-          <a href="https://www.linkedin.com/in/dominik-alexander-wild-233aa11b0/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BDL7yVT15RhGnZ4taNnTTiw%3D%3D" rel="noopener noreferrer">
-            linkedin.com/in/dominik-alexander-wild
-          </a>
-        </p>
+      <div class="contact-card">
+        <div class="contact-photo">
+          <img src="images/profilbild.jpg" alt="Kleines Profilbild von Dominik Wild" />
+        </div>
+        <div class="contact-details">
+          <p><strong>Dominik Wild – individuelle HR-Prozesslösungen</strong></p>
+          <p>Berlin</p>
+          <p>
+            E-Mail:
+            <a href="mailto:dominikwild@email.de">dominikwild@email.de</a>
+          </p>
+          <p>
+            Telefon:
+            <a href="tel:+4916090227726">+49-160-90227726</a>
+          </p>
+          <p>
+            LinkedIn:
+            <a href="https://www.linkedin.com/in/dominik-alexander-wild-233aa11b0/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BDL7yVT15RhGnZ4taNnTTiw%3D%3D" rel="noopener noreferrer">
+              linkedin.com/in/dominik-alexander-wild
+            </a>
+          </p>
+        </div>
       </div>
       <p class="note">
         Besonders passend für Sicherheitsdienste, Zustell- und Kurierbetriebe sowie andere Teams mit wechselndem Personal, Schichtbetrieb und hohem organisatorischem Aufwand im laufenden Betrieb.
