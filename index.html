@@ -54,21 +54,62 @@
     header {
       position: relative;
       background-color: var(--primary-bg);
-      background-image:
-        linear-gradient(rgba(11, 31, 54, 0.55), rgba(11, 31, 54, 0.55)),
-        url("images/hero.jpg");
-      background-size: contain;
-      background-position: center center;
-      background-repeat: no-repeat;
       color: var(--primary-text);
       text-align: center;
-      padding: 8rem 1rem 7rem;
+      min-height: 540px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("images/hero.jpg");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      filter: blur(10px);
+      transform: scale(1.08);
+      opacity: 0.55;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(11, 31, 54, 0.5), rgba(11, 31, 54, 0.5));
+      pointer-events: none;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      padding: 1.5rem;
+    }
+
+    .hero-media img {
+      width: min(1600px, 100%);
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+      filter: saturate(0.88) contrast(0.96) brightness(0.9);
+      opacity: 0.82;
     }
 
     .hero-content {
+      position: relative;
+      z-index: 2;
       max-width: 920px;
       margin: 0 auto;
-      padding: 1rem;
+      padding: 6rem 1rem 5rem;
     }
 
     header h1 {
@@ -343,8 +384,15 @@
     
     @media (max-width: 700px) {
       header {
-        padding: 5rem 1rem 4.5rem;
-        background-position: center center;
+        min-height: 460px;
+      }
+
+      .hero-media {
+        padding: 1rem;
+      }
+
+      .hero-content {
+        padding: 4.5rem 1rem 4rem;
       }
 
       header h1 {
@@ -373,6 +421,9 @@
 </head>
 <body>
   <header>
+    <div class="hero-media" aria-hidden="true">
+      <img src="images/hero.jpg" alt="" />
+    </div>
     <div class="container hero-content">
       <h1>
         Weniger Personalchaos. Mehr Struktur für Sicherheits- und Lieferdienstbetriebe.
