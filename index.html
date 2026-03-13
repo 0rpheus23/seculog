@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dominik Wild – Personaladministration für Sicherheits- und Lieferdienstbetriebe</title>
+  <meta
+    name="description"
+    content="Externer Support für Personaladministration, Unterlagenstruktur und wiederkehrende Abläufe in Sicherheits- und Lieferdienstbetrieben mit hohem Personalwechsel und hohem Organisationsdruck."
+  />
+  <style>
+    :root {
+      --primary-bg: #0b1f36;
+      --primary-text: #ffffff;
+      --accent: #d9a441;
+      --accent-dark: #c18e2f;
+      --text-color: #2f2f2f;
+      --muted-text: #666666;
+      --card-bg: #ffffff;
+      --section-bg: #f6f4ef;
+      --section-alt: #ffffff;
+      --border: #e7e0d3;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.65;
+      color: var(--text-color);
+      background-color: var(--section-bg);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    header {
+      position: relative;
+      background-image:
+        linear-gradient(rgba(11, 31, 54, 0.72), rgba(11, 31, 54, 0.72)),
+        url("images/hero.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--primary-text);
+      text-align: center;
+      padding: 8rem 1rem 7rem;
+    }
+
+    .hero-content {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    header h1 {
+      margin: 0 0 1rem;
+      font-size: 2.6rem;
+      line-height: 1.15;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
+    }
+
+    header p {
+      margin: 0 auto 1.8rem;
+      max-width: 780px;
+      font-size: 1.08rem;
+      color: rgba(255, 255, 255, 0.96);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--accent);
+      color: var(--primary-bg);
+      padding: 0.9rem 1.6rem;
+      border: none;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+    }
+
+    .btn:hover {
+      background-color: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    nav {
+      background-color: var(--primary-bg);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    nav a {
+      color: var(--primary-text);
+      padding: 0.9rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.15s ease-in-out;
+    }
+
+    nav a:hover {
+      background-color: #132d4a;
+    }
+
+    section {
+      padding: 4rem 1rem;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.4rem;
+      color: var(--primary-bg);
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    .text-block {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .text-block p {
+      font-size: 1.02rem;
+      color: var(--text-color);
+    }
+
+    .grid,
+    .offer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .card,
+    .offer-card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      flex: 1 1 280px;
+      max-width: 340px;
+    }
+
+    .card-wide {
+      max-width: 920px;
+      width: 100%;
+    }
+
+    .card h3,
+    .offer-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      color: var(--primary-bg);
+      font-size: 1.18rem;
+      line-height: 1.3;
+    }
+
+    .card p,
+    .offer-card p {
+      margin: 0;
+      font-size: 0.97rem;
+      color: var(--text-color);
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 1rem;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .offer-price {
+      font-size: 1.08rem;
+      font-weight: bold;
+      color: var(--primary-bg);
+      margin-bottom: 1rem;
+    }
+
+    .offer-card ul,
+    .package-box ul,
+    .credential-list {
+      padding-left: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .offer-card li,
+    .package-box li,
+    .credential-list li {
+      margin-bottom: 0.45rem;
+    }
+
+    .offer-badge {
+      display: inline-block;
+      background-color: var(--accent);
+      color: var(--primary-bg);
+      font-size: 0.78rem;
+      font-weight: bold;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 0.8rem;
+    }
+
+    .package-box {
+      max-width: 540px;
+    }
+
+    .about-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1040px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .about-image {
+      flex: 1 1 280px;
+      max-width: 320px;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+      border: 1px solid var(--border);
+    }
+
+    .about-text {
+      flex: 2 1 460px;
+    }
+
+    .about-text p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .credentials-box {
+      margin-top: 1.5rem;
+      background-color: #fbfaf7;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+
+    .credentials-box h3 {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+      color: var(--primary-bg);
+      font-size: 1.1rem;
+    }
+
+    .credentials-box p {
+      margin-top: 0;
+      margin-bottom: 0.9rem;
+      color: var(--muted-text);
+      font-size: 0.95rem;
+    }
+
+    #contact .contact-details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.98rem;
+      text-align: center;
+    }
+
+    #contact .contact-details a {
+      color: var(--primary-bg);
+    }
+
+    footer {
+      background-color: var(--primary-bg);
+      color: var(--primary-text);
+      padding: 2rem 1rem;
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .note {
+      font-size: 0.92rem;
+      color: var(--muted-text);
+      text-align: center;
+      max-width: 900px;
+      margin: 1.2rem auto 0;
+    }
+
+    .offer-card p.offer-footnote {
+      font-size: 0.72rem;
+      line-height: 1.4;
+      color: var(--muted-text);
+      margin-top: 0.9rem;
+    }
+    
+    @media (max-width: 700px) {
+      header {
+        padding: 5rem 1rem 4.5rem;
+        background-position: center center;
+      }
+
+      header h1 {
+        font-size: 1.85rem;
+      }
+
+      section {
+        padding: 3rem 1rem;
+      }
+
+      section h2 {
+        font-size: 1.6rem;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      nav a {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container hero-content">
+      <h1>
+        Weniger Personalchaos. Mehr Struktur für Sicherheits- und Lieferdienstbetriebe.
+      </h1>
+      <p>
+        Ich unterstütze Sie dabei, Unterlagen, Eintritte und wiederkehrende Personalprozesse sauber, verlässlich und alltagstauglich zu organisieren – insbesondere dort, wo Personalwechsel, Schichtbetrieb, Zeitdruck und administrative Lücken zusammenkommen.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn">Jetzt Kontakt aufnehmen</a>
+        <a href="#angebote" class="btn">Pakete ansehen</a>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#leistungen">Leistungen</a>
+    <a href="#fuerwen">Für wen</a>
+    <a href="#warum">Warum mit mir</a>
+    <a href="#uebermich">Über mich</a>
+    <a href="#faq">FAQ</a>
+    <a href="#angebote">Pakete</a>
+    <a href="#einstieg">Einstieg</a>
+    <a href="#contact">Kontakt</a>
+    <a href="#rechtliches">Rechtliches</a>
+  </nav>
+
+  <section id="intro">
+    <div class="container">
+      <h2>Worum es geht</h2>
+      <div class="text-block">
+        <p>
+          In Sicherheits- und Lieferdienstbetrieben laufen Personalthemen häufig unter hoher Belastung mit: wechselnde Mitarbeitende, Schichtmodelle, verschiedene Einsatzorte, kurzfristige Einsätze und ein hoher Abstimmungsbedarf im laufenden Betrieb. Genau dort entstehen schnell Lücken bei Unterlagen, Zuständigkeiten und Abläufen. Ich unterstütze Sie dabei, diese administrativen Prozesse so zu strukturieren, dass sie im Alltag funktionieren – ohne unnötige Bürokratie und ohne ständiges Nachhalten fehlender Unterlagen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="leistungen">
+    <div class="container">
+      <h2>Leistungen</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Unterlagen und Personaladministration in Ordnung bringen</h3>
+          <p>
+            Ich unterstütze Sie dabei, Personalunterlagen, Ein- und Austritte sowie wiederkehrende administrative Aufgaben übersichtlicher, vollständiger und verlässlicher zu organisieren.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Eintritte für Schicht-, Touren- und Einsatzpersonal sauber aufsetzen</h3>
+          <p>
+            Gerade in Sicherheitsdiensten und Lieferbetrieben braucht es klare Abläufe für Neueintritte, kurzfristige Einsätze und wechselndes Personal. Ich unterstütze Sie dabei, diese Prozesse sauber vorzubereiten, zu standardisieren und nachvollziehbar im Blick zu behalten.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Digitale Abläufe, die im Alltag wirklich entlasten</h3>
+          <p>
+            Ich unterstütze Sie bei Checklisten, Vorlagen, Übersichten und digitalen Lösungen, damit wiederkehrende Aufgaben nicht bei jedem Vorgang neu improvisiert werden müssen.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Zollprüfungen und Schwarzarbeitsprävention im Blick behalten</h3>
+          <p>
+            Gerade in personalintensiven Branchen mit Schichtbetrieb, Außeneinsatz und hohem Wechsel sind saubere Dokumentation, nachvollziehbare Abläufe und vorbereitete Unterlagen entscheidend. Ich unterstütze Sie dabei, formale Risiken zu reduzieren und Prüfungssituationen besser vorzubereiten.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fuerwen" style="background-color: var(--card-bg);">
+    <div class="container">
+      <h2>Für wen ist das gedacht?</h2>
+      <div class="text-block">
+        <p>
+          Mein Angebot richtet sich an Sicherheitsunternehmen, Wachdienste, Veranstaltungs- und Objektschutzteams sowie an Lieferdienstbetriebe, Kurier- und Zustellunternehmen und andere operative Teams mit hohem Personalwechsel, Schichtbetrieb und engem Takt im Tagesgeschäft. Besonders hilfreich ist die Unterstützung dort, wo viele Personalunterlagen zusammenlaufen, Zuständigkeiten nicht immer klar geregelt sind und Personaladministration im Alltag häufig zu kurz kommt.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="warum">
+    <div class="container">
+      <h2>Warum das hilft</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Weniger organisatorischer Aufwand</h3>
+          <p>
+            Klare Strukturen helfen dabei, Unterlagen, Zuständigkeiten und Abläufe besser zusammenzuhalten – insbesondere dann, wenn Schichten, Touren, Einsatzorte und kurzfristige Änderungen parallel laufen.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Saubere Vorbereitung statt Nacharbeit</h3>
+          <p>
+            Vollständige Unterlagen und klare Eintrittsprozesse sparen Rückfragen, Hektik und unnötige Nacharbeit – besonders bei häufigem Personalwechsel.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Praxisnah statt theoretisch</h3>
+          <p>
+            Keine abstrakten Konzepte, sondern Unterstützung, die zu realen Betriebsabläufen in Sicherheitsdiensten und Lieferbetrieben passt.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Compliance im Blick behalten</h3>
+          <p>
+            Durch verstärkte Prüfungen, formale Anforderungen und datengestützte Kontrollmethoden wird saubere Personaladministration immer wichtiger. Gute Unterlagen und klare Prozesse helfen, Risiken, Rückfragen und vermeidbare Bußgelder zu reduzieren.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="uebermich" style="background-color: var(--card-bg);">
+    <div class="container">
+      <h2>Über mich</h2>
+
+      <div class="about-wrapper">
+        <div class="about-image">
+          <img src="images/profilbild.jpg" alt="Profilbild von Dominik Wild" />
+        </div>
+
+        <div class="about-text">
+          <p>
+            Ich bin Dominik Wild und unterstütze Sicherheits- und Lieferdienstbetriebe dabei, ihre administrativen Personalabläufe besser zu organisieren.
+          </p>
+
+          <p>
+            Mein Schwerpunkt liegt auf Personalunterlagen, Eintritten und wiederkehrenden Prozessen, die im Hintergrund zuverlässig funktionieren müssen, damit im operativen Alltag keine unnötigen Reibungsverluste entstehen. Gerade in Branchen mit Schichtbetrieb, Außeneinsatz, Einsatzdynamik und hohem Personalwechsel schafft eine saubere Struktur nicht nur Entlastung, sondern auch mehr Sicherheit bei Compliance, Schwarzarbeit-Prävention und SV-Meldeverfahren.
+          </p>
+
+          <p>
+            Ich arbeite strukturiert, sorgfältig und pragmatisch. Mir geht es nicht darum, Prozesse unnötig aufzublähen, sondern sie so aufzusetzen, dass sie für den Alltag tatsächlich hilfreich sind – auch dann, wenn es schnell gehen muss und viele Themen gleichzeitig bearbeitet werden.
+          </p>
+
+          <div class="credentials-box">
+            <h3>Fachlicher Hintergrund</h3>
+            <p>
+              Ich bringe praktische Erfahrung aus der operativen Personalarbeit mit – insbesondere in Bereichen, in denen Genauigkeit, Verlässlichkeit und ein sauberer Umgang mit Unterlagen und Fristen entscheidend sind.
+            </p>
+            <ul class="credential-list">
+              <li>Praktische Erfahrung in Personaladministration und payrollnahen Prozessen</li>
+              <li>Erfahrung im Bescheinigungswesen, in der Datenpflege und im Fristenmanagement</li>
+              <li>Vertraut mit wiederkehrenden Abläufen rund um Eintritte, Unterlagen und administrative Nachverfolgung</li>
+              <li>Geprüfter Personalreferent</li>
+              <li>Praxisnaher Blick auf digitale, strukturierende und KI-gestützte Unterstützung im Arbeitsalltag</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <h2>Häufige Fragen</h2>
+      <div class="faq-list">
+        <div class="card card-wide">
+          <h3>Für wen ist das Angebot geeignet?</h3>
+          <p>
+            Das Angebot richtet sich an Sicherheitsunternehmen, Wachdienste, Veranstaltungs- und Objektschutzteams sowie an Lieferdienstbetriebe, Kurier- und Zustellunternehmen und andere Betriebe mit wechselndem Personal, Schichtbetrieb und hohem organisatorischem Aufwand.
+          </p>
+        </div>
+
+        <div class="card card-wide">
+          <h3>Wie läuft die Zusammenarbeit ab?</h3>
+          <p>
+            Zunächst betrachten wir gemeinsam, wo aktuell die größten Engpässe liegen – zum Beispiel bei Unterlagen, Eintritten, Zuständigkeiten oder wiederkehrenden Abläufen. Daraus entsteht ein Unterstützungsmodell, das zu Ihrem Alltag passt: punktuell, projektbezogen oder laufend.
+          </p>
+        </div>
+
+        <div class="card card-wide">
+          <h3>Was ist nicht Bestandteil des Angebots?</h3>
+          <p>
+            Ich unterstütze bei operativen, vorbereitenden und organisatorischen Aufgaben rund um Personaladministration und HR-nahe Abläufe. Steuerliche oder rechtliche Beratung sowie die eigenständige fachverantwortliche Abrechnung gehören nicht dazu.
+          </p>
+        </div>
+
+        <div class="card card-wide">
+          <h3>Wie kann ein Einstieg aussehen?</h3>
+          <p>
+            Ein guter Einstieg ist das Personaladmin-Check &amp; Strukturpaket. Damit lassen sich vorhandene Unterlagen, Ablagen und Abläufe sichten, typische Schwachstellen erkennen und konkrete nächste Schritte ableiten.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="angebote" style="background-color: var(--section-bg);">
+    <div class="container">
+      <h2>Angebote &amp; Pakete</h2>
+      <div class="text-block">
+        <p style="text-align:center;">
+          Je nachdem, wie hoch der aktuelle Bedarf ist, kann die Unterstützung punktuell, projektbezogen oder laufend erfolgen – vom schnellen Struktur-Check bis zur akuten Unterstützung in einer Prüfungssituation.
+        </p>
+      </div>
+
+      <div class="offer-grid">
+        <div class="offer-card">
+          <div class="offer-badge">Einstieg</div>
+          <h3>Personaladmin-Check &amp; Strukturpaket</h3>
+          <div class="offer-price">ab 390 € · einmalig</div>
+          <ul>
+            <li>Sichtung der aktuellen Unterlagen und Ablagestruktur</li>
+            <li>Identifikation typischer Lücken und Engpässe</li>
+            <li>Vorschläge zur Vereinfachung und Strukturierung</li>
+            <li>Konkrete Handlungsempfehlung für die nächsten Schritte</li>
+          </ul>
+          <p>
+            Ideal für Sicherheits- und Lieferdienstbetriebe, die ihre Personaladministration zunächst ordnen, typische Lücken erkennen und eine tragfähige Grundlage für den Alltag schaffen möchten.
+          </p>
+        </div>
+
+        <div class="offer-card">
+          <div class="offer-badge">laufend</div>
+          <h3>Monatliche Unterstützung</h3>
+          <div class="offer-price">ab 260 € / Monat</div>
+          <ul>
+            <li>Nachhalten fehlender Unterlagen</li>
+            <li>Unterstützung bei Ein- und Austritten</li>
+            <li>Pflege von Übersichten und Abläufen</li>
+            <li>Entlastung im laufenden Tagesgeschäft</li>
+          </ul>
+          <p>
+            Geeignet für Teams, bei denen Personaladministration laufend mitläuft, im Alltag jedoch oft zu wenig Zeit bleibt, alles vollständig und verlässlich nachzuhalten.
+          </p>
+        </div>
+
+        <div class="offer-card">
+          <div class="offer-badge">flexibel</div>
+          <h3>Stundenweise Unterstützung</h3>
+          <div class="offer-price">ab 65 € / Stunde</div>
+          <ul>
+            <li>Punktuelle Unterstützung bei konkreten Aufgaben</li>
+            <li>Hilfe bei Unterlagen, Abläufen oder Personalprozessen</li>
+            <li>Flexibel buchbar nach Aufwand</li>
+            <li>Ideal für kurzfristige Entlastung</li>
+          </ul>
+          <p>
+            Sinnvoll für einzelne Themen, kurzfristige Engpässe oder administrative Aufgaben, die schnell und pragmatisch gelöst werden sollen.
+          </p>
+        </div>
+
+        <div class="offer-card">
+          <div class="offer-badge">projektbezogen</div>
+          <h3>Onboarding- &amp; Eintrittsstruktur</h3>
+          <div class="offer-price">ab 450 € · projektbezogen</div>
+          <ul>
+            <li>Checklisten für Neueintritte und wechselndes Personal</li>
+            <li>Struktur für Unterlagen und Nachverfolgung</li>
+            <li>Standardisierung wiederkehrender Abläufe</li>
+            <li>Praxisnahe Vorlagen für den Alltag</li>
+          </ul>
+          <p>
+            Besonders passend für Sicherheits- und Lieferdienstbetriebe, in denen regelmäßig neues, kurzfristig verfügbares oder wechselndes Personal eingebunden wird.
+          </p>
+        </div>
+
+        <div class="offer-card">
+          <div class="offer-badge">projektbezogen</div>
+          <h3>Digitale Struktur &amp; Vorlagen</h3>
+          <div class="offer-price">ab 500 € · projektbezogen</div>
+          <ul>
+            <li>Dokumenten- und Fristenübersichten</li>
+            <li>Strukturierung digitaler Ablagen</li>
+            <li>Vorlagen für wiederkehrende Abläufe</li>
+            <li>Praxisnahe digitale und KI-gestützte Lösungen</li>
+          </ul>
+          <p>
+            Für Teams, die wiederkehrende Abläufe übersichtlicher organisieren und weniger von Improvisation, Zuruf und Einzelwissen abhängig sein möchten.
+          </p>
+        </div>
+
+        <div class="offer-card">
+          <div class="offer-badge">Workshop</div>
+          <h3>Zollprüfung: Vermeidet hohe Bußgelder bis zu 30.000 €</h3>
+          <div class="offer-price">590 € · 2 Stunden</div>
+          <ul>
+            <li>Was sich bei Prüfungen durch Zoll und Finanzkontrolle Schwarzarbeit verschärft hat</li>
+            <li>Wo Sicherheits- und Lieferdienstbetriebe besonders anfällig für formale Fehler sind</li>
+            <li>Welche Unterlagen und Abläufe im Prüfungsfall besonders kritisch werden</li>
+            <li>Wie Sie Ihre Personaladministration so aufstellen, dass Risiken und Rückfragen reduziert werden</li>
+          </ul>
+          <p>
+            Für Betriebe, die wissen, dass unvollständige Unterlagen, Lücken in der Personalakte oder unsaubere Eintrittsprozesse im Ernstfall schnell teuer werden können – und die lieber frühzeitig Ordnung schaffen möchten.
+          </p>
+        </div>
+
+        <div class="offer-card">
+          <div class="offer-badge">Feuerwehrpaket</div>
+          <h3>Akute Unterstützung während einer Zollprüfung</h3>
+          <div class="offer-price">890 € · bis zu 3 Stunden</div>
+          <ul>
+            <li>Schnelle Ersteinschätzung der akuten Lage und der dringendsten Baustellen</li>
+            <li>Sichtung vorhandener Unterlagen, Personalakten und offener Punkte</li>
+            <li>Priorisierung dessen, was jetzt sofort geordnet, nachgezogen oder vorbereitet werden muss</li>
+            <li>Strukturierende Unterstützung für die nächsten sinnvollen Schritte im Umgang mit der Prüfungssituation</li>
+          </ul>
+          <p>
+            Für Betriebe, die bereits in eine Prüfung geraten sind und jetzt schnell Ordnung in Unterlagen, Zuständigkeiten und Kommunikation bringen müssen, um die Situation strukturiert zu stabilisieren. Weitere Unterstützung danach: 145 € je zusätzlicher Stunde.
+          </p>
+          <p class="offer-footnote">
+            * Das Feuerwehrpaket dient der schnellen organisatorischen Stabilisierung in der Prüfungssituation. Rechtliche oder steuerliche Einzelfallberatung ist nicht Bestandteil des Angebots und sollte bei Bedarf mit entsprechendem Fachbeistand abgestimmt werden.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="einstieg" style="background-color: var(--card-bg);">
+    <div class="container">
+      <h2>Guter Einstieg</h2>
+      <div class="grid">
+        <div class="card package-box">
+          <h3>Personaladmin-Check &amp; Strukturpaket</h3>
+          <p><strong>ab 390 €</strong> – einmalig</p>
+          <ul>
+            <li>Sichtung der aktuellen Unterlagen und Ablagestruktur</li>
+            <li>Identifikation typischer Lücken und Engpässe</li>
+            <li>Vorschläge zur Vereinfachung und Strukturierung</li>
+            <li>Übersicht über wiederkehrende Abläufe</li>
+            <li>Konkrete nächste Schritte</li>
+          </ul>
+          <p>
+            Dieses Paket ist besonders sinnvoll, wenn Sie zunächst Ordnung schaffen und erkennen möchten, wo im Alltag die größten Reibungsverluste entstehen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2>Kontakt</h2>
+      <div class="contact-details">
+        <p><strong>Dominik Wild – individuelle HR-Prozesslösungen</strong></p>
+        <p>Berlin</p>
+        <p>
+          E-Mail:
+          <a href="mailto:dominikwild@email.de">dominikwild@email.de</a>
+        </p>
+        <p>
+          Telefon:
+          <a href="tel:+4916090227726">+49-160-90227726</a>
+        </p>
+        <p>
+          LinkedIn:
+          <a href="https://www.linkedin.com/in/dominik-alexander-wild-233aa11b0/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BDL7yVT15RhGnZ4taNnTTiw%3D%3D" rel="noopener noreferrer">
+            linkedin.com/in/dominik-alexander-wild
+          </a>
+        </p>
+      </div>
+      <p class="note">
+        Besonders passend für Sicherheitsdienste, Zustell- und Kurierbetriebe sowie andere Teams mit wechselndem Personal, Schichtbetrieb und hohem organisatorischem Aufwand im laufenden Betrieb.
+      </p>
+      <p class="note">
+        Wenn Sie feststellen, dass Unterlagen, Eintritte und Personaladministration im Alltag zu viel Zeit und Energie binden, kann ein erster Austausch sinnvoll sein.
+      </p>
+      <p class="note">
+        
+      </p>
+    </div>
+  </section>
+
+  <section id="rechtliches" style="background-color: var(--card-bg);">
+    <div class="container">
+      <h2>Rechtliches</h2>
+      <div class="text-block">
+        <h3>Impressum</h3>
+        <p>
+          <strong>Angaben gemäß § 5 DDG</strong><br />
+          Dominik Wild<br />
+          Rigaer Str. 2<br />
+          10247 Berlin<br />
+          Deutschland
+        </p>
+
+        <p>
+          <strong>Kontakt:</strong><br />
+          Telefon: +49-160-90227726<br />
+          E-Mail: dominikwild@email.de
+        </p>
+
+        <p>
+          <strong>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</strong><br />
+          Dominik Wild<br />
+          Rigaer Str. 2<br />
+          10247 Berlin
+        </p>
+
+        <p>
+          Dieses Angebot umfasst operative, vorbereitende und organisatorische Unterstützungsleistungen im Bereich Personaladministration sowie in HR-nahen Abläufen. Steuerliche oder rechtliche Beratung ist nicht Gegenstand des Angebots.
+        </p>
+
+        <p>
+          Auch bei akuten Prüfungssituationen, etwa im Zusammenhang mit Zoll oder Finanzkontrolle Schwarzarbeit, umfasst das Angebot ausschließlich strukturierende, vorbereitende und organisatorische Unterstützung. Rechtliche oder steuerliche Einzelfallberatung ist nicht Bestandteil des Angebots.
+        </p>
+
+        <h3>Datenschutzhinweise</h3>
+        <p>
+          <strong>1. Verantwortlicher</strong><br />
+          Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br />
+          Dominik Wild<br />
+          Rigaer Str. 2<br />
+          10247 Berlin<br />
+          Deutschland<br />
+          E-Mail: dominikwild@email.de<br />
+          Telefon: +49-160-90227726
+        </p>
+
+        <p>
+          <strong>2. Allgemeine Hinweise zur Datenverarbeitung</strong><br />
+          Personenbezogene Daten werden auf dieser Website nur im Rahmen der geltenden gesetzlichen Vorschriften verarbeitet.
+        </p>
+
+        <p>
+          <strong>3. Aufruf der Website</strong><br />
+          Beim Aufruf dieser Website verarbeitet der Hosting-Anbieter technisch erforderliche Daten, zum Beispiel IP-Adresse, Datum und Uhrzeit des Zugriffs, Browsertyp und Betriebssystem, zur Bereitstellung und Sicherheit der Website.
+        </p>
+
+        <p>
+          <strong>4. Kontaktaufnahme</strong><br />
+          Wenn Sie per E-Mail oder über das Kontaktformular mit mir in Verbindung treten, werden die von Ihnen mitgeteilten Daten zum Zweck der Bearbeitung Ihrer Anfrage verarbeitet.
+        </p>
+
+        <p>
+          <strong>5. Empfänger von Daten</strong><br />
+          Eine Weitergabe Ihrer personenbezogenen Daten erfolgt nur, soweit dies gesetzlich erlaubt ist oder für die Bereitstellung der Website bzw. die Bearbeitung Ihrer Anfrage erforderlich ist, zum Beispiel an Hosting-Anbieter.
+        </p>
+
+        <p>
+          <strong>6. Speicherdauer</strong><br />
+          Personenbezogene Daten werden nur so lange gespeichert, wie dies für den jeweiligen Zweck erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen.
+        </p>
+
+        <p>
+          <strong>7. Ihre Rechte</strong><br />
+          Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch, Datenübertragbarkeit und Beschwerde bei einer Datenschutzaufsichtsbehörde.
+        </p>
+
+        <p>
+          <strong>8. Externe Links</strong><br />
+          Diese Website kann Links zu externen Websites enthalten. Für deren Inhalte und Datenschutzpraktiken sind ausschließlich die jeweiligen Betreiber verantwortlich.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Dominik Wild – HR &amp; Personaladministration für Sicherheit &amp; Lieferdienste</p>
+    <p><a href="#rechtliches">Impressum &amp; Datenschutzhinweise</a></p>
+  </footer>
+</body>
+</html>
